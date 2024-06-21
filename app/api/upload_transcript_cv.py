@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends
-from fastapi import FastAPI, File, UploadFile, Depends, HTTPException
+from fastapi import File, UploadFile, Depends, HTTPException
 from .oauth2 import router as oauth2_router
-from fastapi.responses import JSONResponse
 from app.init_db import init_db
 import shutil
 from pathlib import Path
