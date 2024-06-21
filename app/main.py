@@ -11,7 +11,7 @@ app = FastAPI()
 
 app.get("/")
 async def root():
-    return "hello":
+    return "hello";
 
 async def root():
     return {"message": "Hello World"}
