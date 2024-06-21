@@ -9,6 +9,10 @@ app = FastAPI()
 
 #init_db()
 
+app.get("/")
+async def root():
+    return "hello":
+
 async def root():
     return {"message": "Hello World"}
 # Include the OAuth2 router
