@@ -2,13 +2,13 @@ from fastapi import APIRouter, Depends
 from fastapi import File, UploadFile, Depends, HTTPException
 from .oauth2 import router as oauth2_router
 from app.init_db import init_db
-import shutil
 from pathlib import Path
 from app import models, schemas, crud, database
 from sqlalchemy.orm import Session
 import fitz  # PyMuPDF
 import base64
 import requests
+from app.util import convert_to_base64_from_pdf
 
 OPENAI_API_KEY="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"
 
@@ -21,8 +21,9 @@ async def uploadAndTranscript_cv(user_id: int, file: UploadFile = File(...), db:
         raise HTTPException(status_code=404, detail="User not found")
     
     file_location = Path("uploaded_files") / file.filename
-    with open(file_location, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+
+    base64_image = convert_to_base64_from_pdf(file_location, file)
+    
 
     # Convert PDF to image using PyMuPDF
     doc = fitz.open(file_location)
