@@ -4,6 +4,7 @@ from fastapi.responses import RedirectResponse
 import requests
 from jose import jwt
 from sqlalchemy.orm import Session
+
 from app.database import get_db as get_db
 from app.crud import get_or_create_user as get_or_create_user
 from app.models import User as User

@@ -6,7 +6,6 @@ from jose import jwt
 from sqlalchemy.orm import Session
 from database import get_db
 from crud import get_or_create_user
-from models import User
 
 router = APIRouter()
 

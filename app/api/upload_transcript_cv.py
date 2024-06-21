@@ -7,15 +7,7 @@ import shutil
 from pathlib import Path
 from app import models, schemas, crud, database
 from sqlalchemy.orm import Session
-from openai import OpenAI
 import fitz  # PyMuPDF
-
-from PIL import Image
-from pdf2image import convert_from_path
-from io import BytesIO
-
-import pdfplumber
-
 import base64
 import requests
 

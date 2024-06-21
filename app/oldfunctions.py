@@ -1,16 +1,13 @@
 from fastapi import FastAPI, File, UploadFile, Depends, HTTPException
 from api.oauth2 import router as oauth2_router
-from fastapi.responses import JSONResponse
+
 from .init_db import init_db
 import shutil
 from pathlib import Path
 from . import models, schemas, crud, database
 from sqlalchemy.orm import Session
-from openai import OpenAI
 import pdfplumber
 
-import base64
-import requests
 
 app = FastAPI()
 OPENAI_API_KEY="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"
