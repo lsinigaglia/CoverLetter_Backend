@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile, Depends, HTTPException
+"""from fastapi import FastAPI, File, UploadFile, Depends, HTTPException
 from api.oauth2 import router as oauth2_router
 
 from .init_db import init_db
@@ -6,7 +6,6 @@ import shutil
 from pathlib import Path
 from . import models, schemas, crud, database
 from sqlalchemy.orm import Session
-import pdfplumber
 
 
 app = FastAPI()
@@ -19,13 +18,12 @@ from fastapi import FastAPI, File, UploadFile, Depends, HTTPException
 from sqlalchemy.orm import Session
 import shutil
 from pathlib import Path
-import pdfplumber
 from . import models, schemas, crud, database
 
 app = FastAPI()
 
 def save_uploaded_file(upload_file: UploadFile) -> Path:
-    """Save upload file to disk."""
+    'Save upload file to disk.'
     try:
         destination = Path("uploaded_files") / upload_file.filename
         with open(destination, "wb") as buffer:
@@ -35,7 +33,7 @@ def save_uploaded_file(upload_file: UploadFile) -> Path:
         raise HTTPException(status_code=500, detail=f"Failed to save file: {e}")
 
 def extract_text_from_pdf(pdf_path: Path) -> str:
-    """Extract text from a PDF file."""
+    "Extract text from a PDF file."
     try:
         text = ""
         with pdfplumber.open(pdf_path) as pdf:
@@ -82,4 +80,4 @@ app.include_router(oauth2_router)
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)"""
