@@ -5,10 +5,10 @@ from app.init_db import init_db
 from pathlib import Path
 from app import models, schemas, crud, database
 from sqlalchemy.orm import Session
-import fitz  # PyMuPDF
 import base64
 import requests
 from app.util import convert_to_base64_from_pdf
+import fitz
 
 OPENAI_API_KEY="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"
 

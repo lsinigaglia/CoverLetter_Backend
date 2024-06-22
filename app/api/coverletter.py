@@ -2,6 +2,7 @@ from fastapi import FastAPI, APIRouter, HTTPException, Depends
 from langchain import OpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
+from langchain_openai import ChatOpenAI
 from app import database, models, schemas
 from sqlalchemy.orm import Session
 from sqlalchemy import desc
@@ -12,7 +13,7 @@ router = APIRouter()
 
 # Initialize the OpenAI API
 
-openai = OpenAI(api_key="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")
+openai = ChatOpenAI(api_key="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")
 
 #Define the prompt template for generating the cover letter
 prompt_template = PromptTemplate(
