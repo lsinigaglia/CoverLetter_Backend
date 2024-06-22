@@ -7,7 +7,7 @@ from app.init_db import init_db
 
 app = FastAPI()
 
-#init_db()
+init_db()
 
 app.get("/")
 async def root():

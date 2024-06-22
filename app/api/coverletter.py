@@ -1,13 +1,10 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Depends
-from pydantic import BaseModel
 from langchain import OpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
-from .upload_transcript_cv import OPENAI_API_KEY
 from app import database, models, schemas
 from sqlalchemy.orm import Session
 from sqlalchemy import desc
-from app.schemas import CoverLetterRequest
 
 
 app = FastAPI()
