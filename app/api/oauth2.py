@@ -18,7 +18,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 # Replace these with your own values from the Google Developer Console
 GOOGLE_CLIENT_ID = "149484648932-utpmlu4c0cecqo8oo6tkd02qca9c91ja.apps.googleusercontent.com"
 GOOGLE_CLIENT_SECRET = "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"
-GOOGLE_REDIRECT_URI = "http://localhost:8000/"
+GOOGLE_REDIRECT_URI = "https://coverletter-backend-u4pzro2pw-lucas-projects-7060412b.vercel.app/"
 
 
 @router.get("/login/google")
