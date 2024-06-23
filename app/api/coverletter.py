@@ -33,7 +33,7 @@ async def generate_cover_letter(request: schemas.CoverLetterRequest, db: Session
     
     # Extract the text_pdf (transcribed CV text)
     cv_text = user_cv.text_pdf
-    print ("ciao")
+    #print ("ciao")
     try:
         # Generate the prompt
         prompt = generate_prompt(cv_text, request.jobDescription)
@@ -46,12 +46,12 @@ async def generate_cover_letter(request: schemas.CoverLetterRequest, db: Session
             ],
             model="gpt-4o"
         )
-        print (response.choices[0].message.content.strip())
+      #  print (response.choices[0].message.content.strip())
         # Extract the cover letter from the response
         cover_letter = response.choices[0].message.content.strip()
         # Extract the cover letter from the response
         cover_letter_text = response.choices[0].message.content.strip()
-        print(cover_letter_text)
+       # print(cover_letter_text)
         
         # Create a new Coverletter instance and save to the database
         new_cover_letter = models.Coverletter(
