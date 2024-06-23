@@ -1,7 +1,5 @@
 from fastapi import APIRouter, Depends
 from fastapi import File, UploadFile, Depends, HTTPException
-from .oauth2 import router as oauth2_router
-from app.init_db import init_db
 from pathlib import Path
 from app import models, schemas, crud, database
 from sqlalchemy.orm import Session
@@ -9,6 +7,7 @@ import base64
 import requests
 from app.util import convert_to_base64_from_pdf
 import fitz
+from sqlalchemy import desc
 
 OPENAI_API_KEY="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"
 
