@@ -11,7 +11,7 @@ router = APIRouter()
 @router.get("/coverletter/{user_id}")
 async def get_cover_letter(user_id: int, db: Session = Depends(database.get_db)):
     # Query the database for the user's cover letter
-    user_cover_letter = db.query(models.Coverletter).filter(models.Coverletter.user_id == user_id).order_by(desc(models.CoverLetter.created_at)).first()
+    user_cover_letter = db.query(models.Coverletter).filter(models.Coverletter.user_id == user_id).order_by(desc(models.Coverletter.created_at)).first()
     if not user_cover_letter:
         raise HTTPException(status_code=404, detail="Cover letter not found for the user")
     
