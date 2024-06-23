@@ -6,10 +6,8 @@
       }
   ],
   "functions": {
-      "app/main.py": {
-          "maxDuration": 40
-      },
-      "app/api/coverletter.py": {
+      
+      "api/coverletter.py": {
         "maxDuration": 40
   }
 }
