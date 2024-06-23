@@ -18,3 +18,5 @@ def convert_to_base64_from_pdf(file_location, file):
     with open(image_path, "rb") as img_file:
         base64_image = base64.b64encode(img_file.read()).decode("utf-8")
     return base64_image
+
+prompt_cover_letter = "1"
