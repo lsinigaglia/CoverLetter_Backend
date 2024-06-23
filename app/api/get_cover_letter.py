@@ -16,6 +16,3 @@ async def get_cover_letter(user_id: int, db: Session = Depends(database.get_db))
         raise HTTPException(status_code=404, detail="Cover letter not found for the user")
     
     return {"cover_letter": user_cover_letter.text}
-
-# Include the router in the FastAPI app
-app.include_router(router)
