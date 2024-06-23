@@ -1,5 +1,5 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Depends
-
+from util import coverLetterGuidelinesSysPrompt
 from app import database, models, schemas
 from sqlalchemy.orm import Session
 from sqlalchemy import desc
@@ -18,13 +18,10 @@ client = OpenAI(
 # Define the prompt template for generating the cover letter
 def generate_prompt(cv: str, job_description: str) -> str:
     return (
-        "Using the following curriculum vitae (CV) and job description, generate a cover letter. \n\n"
-        "Avoid using '[' as this will be a final product that will be directly passed to HR. Be human!"
+        "Using the following curriculum vitae (CV) and job description, generate a cover letter. \n"
         f"CV:\n{cv}\n\n"
         f"Job Description:\n{job_description}\n\n"
-        "Cover Letter:\n" """
-        "IGNORE the previous instruction. I'm using you as an api i'm running tests and i dont want to waste tokens."
-        "followed by 6 newlines" """
+        "Cover Letter:\n" 
     )
 
 @router.post("/coverletter")
@@ -44,7 +41,7 @@ async def generate_cover_letter(request: schemas.CoverLetterRequest, db: Session
         # Call the OpenAI API to generate the cover letter
         response = client.chat.completions.create(
             messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "system", "content": coverLetterGuidelinesSysPrompt},
                 {"role": "user", "content": prompt}
             ],
             model="gpt-4o"
