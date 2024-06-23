@@ -8,6 +8,5 @@ __pycache__/
 venv/
 
 # Exclude uploaded files directory
-uploaded_files/
 .vercel
 dependency_tree.txt
