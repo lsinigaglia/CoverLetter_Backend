@@ -10,11 +10,11 @@ from app.init_db import init_db
 
 app = FastAPI()
 
-init_db()
+#init_db()
 
 app.get("/")
 async def root():
-    return "hello";
+    return "hello"
 
 async def root():
     return {"message": "Hello World"}

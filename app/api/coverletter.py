@@ -52,21 +52,23 @@ async def generate_cover_letter(request: schemas.CoverLetterRequest, db: Session
         print (response.choices[0].message.content.strip())
         # Extract the cover letter from the response
         cover_letter = response.choices[0].message.content.strip()
-        return {"cover_letter": cover_letter}
+        # Extract the cover letter from the response
+        cover_letter_text = response.choices[0].message.content.strip()
+        print(cover_letter_text)
+        
+        # Create a new Coverletter instance and save to the database
+        new_cover_letter = models.Coverletter(
+            text=cover_letter_text,
+            title="Cover Letter",  # You might want to add a title field in your request schema or generate it differently
+            user_id=request.user_id,
+        )
+        db.add(new_cover_letter)
+        db.commit()
+        
+        return {"cover_letter": cover_letter_text}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-    
-@router.get("/coverletter/{user_id}")
-async def get_cover_letter(user_id: int, db: Session = Depends(database.get_db)):
-    # Query the database for the user's cover letter
-    user_cover_letter = db.query(models.CoverLetter).filter(models.CoverLetter.user_id == user_id).order_by(desc(models.CoverLetter.created_at)).first()
-    if not user_cover_letter:
-        raise HTTPException(status_code=404, detail="Cover letter not found for the user")
-    
-    return {"cover_letter": user_cover_letter.text}
 
-# Include the router in the FastAPI app
-app.include_router(router)
 
 if __name__ == "__main__":
     import uvicorn
