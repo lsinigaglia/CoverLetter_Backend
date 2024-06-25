@@ -1,5 +1,5 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Depends
-from util import coverLetterGuidelinesSysPrompt
+from app.util import coverLetterGuidelinesSysPrompt
 from app import database, models, schemas
 from sqlalchemy.orm import Session
 from sqlalchemy import desc

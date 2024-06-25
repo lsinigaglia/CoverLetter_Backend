@@ -15,10 +15,11 @@ app = FastAPI()
 app.get("/")
 async def root():
     return "hello"
-app.get("/TEST")
-async def root():
-    return {"message": "Hello World"}
-# Include the OAuth2 router
+
+@app.get("/test")
+async def test():
+    return "message Hello World"
+# Include routers 
 app.include_router(oauth2_router)
 app.include_router(upload_transcript_cv_router)
 app.include_router(cover_letter_router)
