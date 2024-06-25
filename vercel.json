@@ -4,11 +4,5 @@
           "src": "/.*",
           "dest": "api/main.py"
       }
-  ],
-  "functions": {
-      
-      "api/coverletter.py": {
-        "maxDuration": 40
-  }
-}
+  ]
 }
