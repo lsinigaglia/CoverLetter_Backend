@@ -15,7 +15,7 @@ app = FastAPI()
 app.get("/")
 async def root():
     return "hello"
-
+app.get("/TEST")
 async def root():
     return {"message": "Hello World"}
 # Include the OAuth2 router
