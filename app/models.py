@@ -41,6 +41,7 @@ class Coverletter(Base):
     id = Column(Integer, primary_key=True, index=True)
     text = Column(String) #it will be a .docx file i suppose
     title = Column(String)
+    poster = Column(String)  
 
     user_id = Column(Integer, ForeignKey("users.id"))
 
