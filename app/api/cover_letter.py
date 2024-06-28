@@ -14,6 +14,7 @@ router = APIRouter(prefix="/coverletters", tags=["Cover Letters"])
 
 
 # userid: 1
+# Luca & Alex are Pros
 # Get list of cover letters
 @router.get(
     "",
