@@ -1,25 +1,4 @@
-import fitz
-import shutil
-import base64
-from fastapi import File
-
-def convert_to_base64_from_pdf(file_location, file):
-    with open(file_location, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-
-    # Convert PDF to image using PyMuPDF
-    doc = fitz.open(file_location)
-    page = doc.load_page(0)  # get the first page
-    pix = page.get_pixmap()  # render page to an image
-    image_path = file_location.with_suffix('.png')
-    pix.save(image_path)
-
-    # Read the image file to base64
-    with open(image_path, "rb") as img_file:
-        base64_image = base64.b64encode(img_file.read()).decode("utf-8")
-    return base64_image
-
-coverLetterGuidelinesSysPrompt = """
+cover_letter_guidelines_sys_prompt = """
     You are an expert cover letter writer. Generate a cover letter and always follow the provided guidelines.
     When writing the cover letter think of yourself as a product, and of your hiring manager as a potential customer, and show why you are the best choice they could make.
     Your answer should only be the cover letter, no other info are needed (contact details etc..). 
@@ -77,6 +56,5 @@ coverLetterGuidelinesSysPrompt = """
         -- Job Posting
             - "We need someone who's comfortable working closely with our development team"
         -- COVER LETTER:
-            - "You are looking for someone who knows the ropes or working shoulder to shoulder with developers and that's what I've done for the last 5 years. In fact, I was able to take a large feature build out that was supposed to take 6 weeks and cut the time to deployment to 3 weeks by setting up an SMS tool for quickly answering our developers questions"
-      `
+            - "You are looking for someone who knows the ropes or working shoulder to shoulder with developers and that's what I've done for the last 5 years. In fact, I was able to take a large feature build out that was supposed to take 6 weeks and cut the time to deployment to 3 weeks by setting up an SMS tool for quickly answering our developers questions"`
 """

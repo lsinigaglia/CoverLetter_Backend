@@ -10,3 +10,5 @@ venv/
 # Exclude uploaded files directory
 .vercel
 dependency_tree.txt
+
+uploaded_files

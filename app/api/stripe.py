@@ -9,6 +9,7 @@ router = APIRouter()
 
 stripe.api_key = "sk_test_51PMdzMP5xPgjccehyKdHdhyVkeYQtbYPErJmWXhUGQYDNvw0VrJm3dDyRoOoQoqGzdVIdfeXpInLxWdJ9qnwhVZ5000vZoryJK"
 
+
 @router.post("/create-checkout-session")
 async def create_checkout_session(user_id: int, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.id == user_id).first()
