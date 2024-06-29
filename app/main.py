@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.api.oauth2 import router as oauth2_router
+from fastapi.middleware.cors import CORSMiddleware
 
 # from app.api.upload_transcript_cv import router as upload_transcript_cv_router
 # from app.api.coverletter import router as cover_letter_router
@@ -15,6 +16,18 @@ app = FastAPI()
 
 # init_db()
 
+origins = [
+    # "http://localhost", "http://localhost:5173",
+    "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Include routers
 # app.include_router(oauth2_router)
