@@ -1,12 +1,17 @@
 # Exclude VS Code settings
+
 .vscode/
 
 # Exclude Python bytecode files
-__pycache__/
+
+**pycache**/
 
 # Exclude virtual environment directory (if named venv)
+
 venv/
 
 # Exclude uploaded files directory
-uploaded_files/
+
+<!-- uploaded_files/ -->
+
 .vercel
