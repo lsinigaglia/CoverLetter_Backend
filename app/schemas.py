@@ -7,7 +7,7 @@ class CvOut(BaseModel):
     id: int
     created_at: datetime
     updated_at: Optional[datetime]
-    # default_cv: Optional[bool]
+    default_cv: Optional[bool]
     user_id: int
     title: Optional[str]
     pdf_path: str
@@ -28,6 +28,8 @@ class CVBase(BaseModel):
 
 class CVCreate(CVBase):
     text_pdf: str
+    pdf_path: str
+    default_cv: Optional[bool]
 
 
 class CV(CVBase):

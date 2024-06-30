@@ -73,8 +73,12 @@ async def upload_and_transcript(
 
     extracted_text = await transcribe_file(file, file_location)
 
+    print(default_cv)
     cv_data = schemas.CVCreate(
-        user_id="1", pdf_path=str(file_location), text_pdf=extracted_text
+        user_id="1",
+        pdf_path=str(file_location),
+        text_pdf=extracted_text,
+        default_cv=default_cv,
     )
 
     db_cv = crud.create_cv(db=db, cv=cv_data)
