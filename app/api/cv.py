@@ -69,7 +69,7 @@ async def upload_and_transcript(
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
 
-    file_location = Path("uploaded_files") / file.filename
+    file_location = Path("uploaded_cvs") / file.filename
 
     extracted_text = await transcribe_file(file, file_location)
 
