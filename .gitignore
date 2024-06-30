@@ -11,4 +11,4 @@ venv/
 .vercel
 dependency_tree.txt
 
-uploaded_files
+# uploaded_files
