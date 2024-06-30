@@ -16,15 +16,11 @@ class User(Base):
     profile_picture = Column(
         String
     )  # Store the URL to the user's profile picture if needed
-
     # email = Column(String, nullable=False, unique=True)
-    # password = Column(String, nullable=False)
-    # cover_letter_tokens = Column(Integer, nullable=False)
-    # default_cv = Column(Integer,  ForeignKey("cvs.id")) -> CV id
-
+    password = Column(String, nullable=False)
+    cover_letter_tokens = Column(Integer, nullable=False)
     cvs = relationship("Cv", back_populates="user")
     coverletters = relationship("Coverletter", back_populates="user")
-
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
 
@@ -37,9 +33,7 @@ class Cv(Base):
     pdf_path = Column(String, nullable=False)
     text_pdf = Column(String)
     user_id = Column(Integer, ForeignKey("users.id"))
-    # default_cv = Column(
-    #     Boolean, default=False
-    # )  # Aggiunta colonna default settando default su falso
+    default_cv = Column(Boolean, default=False)
     user = relationship("User", back_populates="cvs")
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
@@ -52,7 +46,7 @@ class Coverletter(Base):
     text = Column(String)  # it will be a .docx file i suppose
     title = Column(String)
     poster = Column(String)
-    # cv_id = Column(Integer, ForeignKey("cvs.id"))
+    cv_id = Column(Integer, ForeignKey("cvs.id"))
     user_id = Column(Integer, ForeignKey("users.id"))
     user = relationship("User", back_populates="coverletters")
     created_at = Column(DateTime, default=func.now())

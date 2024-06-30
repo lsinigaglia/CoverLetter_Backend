@@ -21,6 +21,10 @@ origins = [
     "*"
 ]
 
+
+# init_db()
+# print("DB CREATED")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
