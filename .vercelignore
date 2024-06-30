@@ -10,8 +10,4 @@
 
 venv/
 
-# Exclude uploaded files directory
-
-<!-- uploaded_files/ -->
-
 .vercel
