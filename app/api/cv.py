@@ -28,8 +28,9 @@ async def get_cv(
         # .first()
         .all()
     )
-    if not user_cvs:
-        raise HTTPException(status_code=404, detail="CVs not found for the user")
+
+    # if not user_cvs:
+    #     raise HTTPException(status_code=404, detail="CVs not found for the user")
 
     # return {"cv_text": user_cv.text_pdf}
     return user_cvs

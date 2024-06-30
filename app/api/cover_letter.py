@@ -52,11 +52,12 @@ async def get_cover_letters(
         # print(f"Query execution time: {query_end_time - query_start_time:.4f} seconds")
         # cover_letters = cover_letters_query.all()
 
-        if not cover_letters:
-            print(f"No cover letters found for user_id: {'1'}")
-            raise HTTPException(
-                status_code=404, detail="Cover letters not found for the user"
-            )
+        ## qui l'error non serve cosi perche ritorna un array vuoto se non ci sono
+        # if not cover_letters:
+        #     print(f"No cover letters found for user_id: {'1'}")
+        #     raise HTTPException(
+        #         status_code=404, detail="Cover letters not found for the user"
+        #     )
 
         # end_time = time.time()
         # print(f"Total execution time: {end_time - start_time:.4f} seconds")
