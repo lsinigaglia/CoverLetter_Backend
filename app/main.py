@@ -16,10 +16,7 @@ app = FastAPI()
 
 # init_db()
 
-origins = [
-    # "http://localhost", "http://localhost:5173",
-    "*"
-]
+origins = ["http://localhost", "http://localhost:5173", "*"]
 
 
 # init_db()
