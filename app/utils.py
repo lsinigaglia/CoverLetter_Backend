@@ -88,12 +88,12 @@ async def transcribe_file(file: UploadFile, file_location: Path):
         "https://api.openai.com/v1/chat/completions", headers=headers, json=payload
     )
     response_data = response.json()
-    print(response_data)
+    # print(response_data)
 
     extracted_text = (
         response_data.get("choices", [{}])[0].get("message", {}).get("content", "")
     )
-    print("extracted text: " + extracted_text)
+    # print("extracted text: " + extracted_text)
     return extracted_text
 
 
