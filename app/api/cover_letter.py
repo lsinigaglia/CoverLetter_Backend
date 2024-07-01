@@ -142,11 +142,14 @@ async def create_cover_letter(
         cover_letter_text = await generate_cover_letter(cv_text, request.jobDescription)
 
         # Create a new Coverletter instance and save to the database
+        print(user_cv.id)
         new_cover_letter = models.Coverletter(
-            text=cover_letter_text,
             title="COVER LETTER AMAZON TEST",  # You might want to add a title field in your request schema or generate it differently
+            text=cover_letter_text,
+            cv_id=user_cv.id,
             user_id=test_user_id,
         )
+        print(new_cover_letter)
         db.add(new_cover_letter)
         db.commit()
 

@@ -51,6 +51,7 @@ class CoverLetterRequest(BaseModel):
 class CoverLettersOut(BaseModel):
     id: int
     user_id: int
+    cv_id: int
     created_at: datetime
     updated_at: Optional[datetime]
     title: str
@@ -63,6 +64,7 @@ class CoverLetterOut(BaseModel):
     created_at: datetime
     updated_at: Optional[datetime]
     title: str
+    cv_id: int
     poster: Optional[str]
     text: str
 
