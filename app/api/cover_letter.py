@@ -9,6 +9,9 @@ from .. import schemas
 from ..utils import generate_cover_letter
 
 from sqlalchemy import desc, case, func
+from ..config import test_user_id
+
+test_cv_id = 10
 
 router = APIRouter(prefix="/coverletters", tags=["Cover Letters"])
 
@@ -35,7 +38,7 @@ async def get_cover_letters(
         cover_letters = (
             db.query(models.Coverletter)
             .filter(
-                models.Coverletter.user_id == "1"
+                models.Coverletter.user_id == test_user_id
             )  # Replace 1 with the actual user_id variable
             .order_by(
                 # va testata la performance di questo order by -> lho testata è identica
@@ -82,7 +85,7 @@ async def get_cover_letter(id: int, db: Session = Depends(database.get_db)):
     # query_start_time = time.time()
     user_cover_letter = (
         db.query(models.Coverletter)
-        .filter(models.Coverletter.user_id == "1")
+        .filter(models.Coverletter.user_id == test_user_id)
         .filter(models.Coverletter.id == id)
         .first()
     )
@@ -123,9 +126,9 @@ async def create_cover_letter(
     user_cv = (
         db.query(models.Cv)
         # .filter(models.Cv.user_id == request.user_id)
-        .filter(models.Cv.user_id == "1")
+        .filter(models.Cv.user_id == test_user_id)
         # qui mettiamo un filtro che sceglie il cv cha ha default == true
-        .filter(models.Cv.id == "1")
+        .filter(models.Cv.id == test_cv_id)
         # .order_by(desc(models.Cv.created_at))
         .first()
     )
@@ -141,8 +144,8 @@ async def create_cover_letter(
         # Create a new Coverletter instance and save to the database
         new_cover_letter = models.Coverletter(
             text=cover_letter_text,
-            title="COVER LETTER APPLE TEST",  # You might want to add a title field in your request schema or generate it differently
-            user_id="1",
+            title="COVER LETTER AMAZON TEST",  # You might want to add a title field in your request schema or generate it differently
+            user_id=test_user_id,
         )
         db.add(new_cover_letter)
         db.commit()
@@ -162,7 +165,7 @@ async def patch_cover_letter(
     try:
         cover_letter = (
             db.query(models.Coverletter)
-            .filter(models.Coverletter.user_id == "1")
+            .filter(models.Coverletter.user_id == test_user_id)
             .filter(models.Coverletter.id == id)
             .first()
         )
@@ -191,7 +194,7 @@ async def delete_cover_letter(id: int, db: Session = Depends(database.get_db)):
     try:
         cover_letter = (
             db.query(models.Coverletter)
-            .filter(models.Coverletter.user_id == "1")
+            .filter(models.Coverletter.user_id == test_user_id)
             .filter(models.Coverletter.id == id)
             .first()
         )

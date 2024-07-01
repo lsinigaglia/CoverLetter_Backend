@@ -11,4 +11,5 @@ venv/
 .vercel
 dependency_tree.txt
 
-
+#Exclude pytest cache
+.pytest_cache

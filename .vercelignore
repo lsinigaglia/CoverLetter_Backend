@@ -11,3 +11,7 @@
 venv/
 
 .vercel
+
+# Exclude pytest cache
+
+.pytest_cache

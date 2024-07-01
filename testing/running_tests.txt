@@ -1,0 +1,5 @@
+On project root folder:
+
+pytest -v
+
+testing video: https://youtu.be/0sOvCWFmrtA?t=53363

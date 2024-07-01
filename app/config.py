@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 
+test_user_id = 1
 
 # Load environment variables from .env file
 load_dotenv(".env.development.local")
