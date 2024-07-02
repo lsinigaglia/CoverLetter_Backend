@@ -11,7 +11,7 @@ from ..utils import generate_cover_letter
 from sqlalchemy import desc, case, func
 from ..config import test_user_id
 
-test_cv_id = 10
+test_cv_id = 48
 
 router = APIRouter(prefix="/coverletters", tags=["Cover Letters"])
 
