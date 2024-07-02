@@ -71,10 +71,18 @@ async def upload_and_transcript(
     file_location = Path("uploaded_cvs") / file.filename
 
     # extracted_text = await transcribe_file(file, file_location)
-
     extracted_text = extracted_text_TEST  # FOR TESTING
 
+    # Remove .pdf extension from filename
+    filename = file.filename
+    # Ensure the extension is .pdf before removing it
+    if filename.lower().endswith(".pdf"):
+        filename_without_extension_for_title = filename[:-4]
+    else:
+        filename_without_extension_for_title = filename
+
     cv_data = schemas.CVCreate(
+        title=filename_without_extension_for_title,
         user_id=test_user_id,
         pdf_path=str(file_location),
         text_pdf=extracted_text,
