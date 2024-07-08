@@ -62,6 +62,12 @@ async def get_cv(
 
     return user_cv
 
+async def upload_to_s3(file: UploadFile, s3_key: str):
+    try:
+        file.seek(0)
+        s3_client.upload_fileobj(file.file, os.getenv('S3_BUCKET_NAME'), s3_key)
+    except ClientError as e:
+        raise HTTPException(status_code=500, detail=f"Failed to upload file to S3: {str(e)}")
 
 # Upload CV
 @router.post("", response_model=schemas.CvOut)
@@ -69,6 +75,7 @@ async def upload_and_transcript(
     file: UploadFile = File(...),
     db: Session = Depends(database.get_db),
     default_cv: Optional[bool] = Query(False),
+    background_tasks: BackgroundTasks
 ):
 
     user = db.query(models.User).filter(models.User.id == test_user_id).first()
@@ -92,13 +99,15 @@ async def upload_and_transcript(
     # Upload the PDF to S3
     
     s3_key = f"uploaded_pdfs/{filename}"
-    try:
+    """ try:
         s3_client.upload_fileobj(file.file, s3_bucket_name, s3_key)
     except ClientError as e:
         # Log the error or include more detailed error information in the response
         logging.error(e)
-        raise HTTPException(status_code=500, detail=f"Failed to upload file to S3: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to upload file to S3: {str(e)}") """
 
+    # Schedule the upload to S3 in the background
+    background_tasks.add_task(upload_to_s3, file, s3_key)
     #URL of the bucket.     
     s3_url = f"https://{s3_bucket_name}.s3.{os.getenv('AWS_REGION')}.amazonaws.com/{s3_key}"
     
