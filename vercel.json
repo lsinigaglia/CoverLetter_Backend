@@ -1,20 +1,10 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "app/main.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "app/main.py"
-    }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "app/main.py" }
   ],
   "functions": {
-    "app/main.py": {
-      "maxDuration": 35
+    "app/server.js": {
+      "maxDuration": 60
     }
   }
 }
