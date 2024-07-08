@@ -1,4 +1,6 @@
 # from pathlib import Path
+import io
+import os
 from fastapi import HTTPException, UploadFile
 from pathlib import Path
 
@@ -6,18 +8,14 @@ import requests
 from openai import OpenAI
 from app.prompt import cover_letter_guidelines_sys_prompt
 import fitz
-import shutil
 import base64
 
 
-OPENAI_API_KEY = "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"
-client = OpenAI(
-    # This is the default and can be omitted
-    api_key="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"
-)
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 
-def convert_to_base64_from_pdf(
+""" def convert_to_base64_from_pdf(
     file,
     file_location,
 ):
@@ -35,24 +33,33 @@ def convert_to_base64_from_pdf(
     with open(image_path, "rb") as img_file:
         base64_image = base64.b64encode(img_file.read()).decode("utf-8")
     return base64_image
-
+ """
 
 # agiungere file tipe
-async def transcribe_file(file: UploadFile, file_location: Path):
+async def transcribe_file(file: UploadFile):
     # file_location = Path("uploaded_files") / file.filename
 
-    base64_image = convert_to_base64_from_pdf(file, file_location)
+    #base64_image = convert_to_base64_from_pdf(file, file_location)
+
+    # Read the uploaded PDF file in memory
+    pdf_bytes = await file.read()
 
     # Convert PDF to image using PyMuPDF
-    doc = fitz.open(file_location)
+    doc = fitz.open(stream=pdf_bytes, filetype="pdf")
     page = doc.load_page(0)  # get the first page -> qui come per più pagine?
     pix = page.get_pixmap()  # render page to an image
-    image_path = file_location.with_suffix(".png")
+    
+    img_byte_arr = io.BytesIO(pix.tobytes("png")) # Convert the pixmap to bytes
+
+    # Encode the image to base64
+    base64_image = base64.b64encode(img_byte_arr.getvalue()).decode("utf-8")
+    
+    """ image_path = file_location.with_suffix(".png")
     pix.save(image_path)
 
     # Read the image file to base64
     with open(image_path, "rb") as img_file:
-        base64_image = base64.b64encode(img_file.read()).decode("utf-8")
+        base64_image = base64.b64encode(img_file.read()).decode("utf-8") """
 
     headers = {
         "Content-Type": "application/json",
