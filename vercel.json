@@ -3,7 +3,7 @@
     { "source": "/(.*)", "destination": "app/main.py" }
   ],
   "functions": {
-    "app/server.js": {
+    "app/main.py": {
       "maxDuration": 60
     }
   }
