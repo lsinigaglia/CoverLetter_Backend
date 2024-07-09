@@ -23,3 +23,16 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 # Optionally, print specific environment variables
 print("POSTGRES_URL:", os.getenv("POSTGRES_URL")) """
+
+#SETTING FOR VERCEL
+""" {
+  "rewrites": [
+    { "source": "/(.*)", "destination": "app/api/main.py" }
+  ],
+  "functions": {
+    "app/api/main.py": {
+      "maxDuration": 60
+    }
+  }
+}
+ """
