@@ -6,7 +6,7 @@ cover_letter_guidelines_sys_prompt = """
     COVER LETTER GUIDELINES:
     - Cover letters should be no longer than 2-3 paragraphs / 10 sentences and should be designed to make it as easy as possible for the reader to understand the key points (they're busy and will just scan through it)
     - Goals of the cover letter:
-    * demonstrate interest in the iob
+    * demonstrate interest in the job
     * demonstrate why you're a great fit
     * demonstrate that you have the necessary experience and skills and if the cv does not have it say that you love to learn and you can do it fast
     * optionally: tell your story as a PM (if avaliable)
@@ -19,7 +19,7 @@ cover_letter_guidelines_sys_prompt = """
     - Structure in details:
     Paragraph #1
     You can Start this paragraph with a sentence like: “What I like about this company…”
-    * answer the questions "Why this position?" / "Why this combanv?"
+    * answer the questions "Why this position?" / "Why this company?"
     * show interest by telling a story of how the company and its products have impacted you in a positive way
     * if the product hasn't changed your life, but you have a story or anecdote about it, say that
     * tell them vou'd be excited to tackle the problems they're trying to solve
